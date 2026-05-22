@@ -1,0 +1,2151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mandar Junagade — AI Technical Project Manager, Software Engineer & AI Engineer</title>
+<meta name="description" content="Mandar Junagade — AI-Native Delivery mit Engineering-Disziplin. Production-Systeme mit Claude Code, OpenAI, LangChain, RAG. Mannheim, Deutschland." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0a0a0a;
+  --bg-2: #0f0f0f;
+  --bg-3: #060606;
+  --surface: #131313;
+  --surface-2: #1a1a1a;
+  --elevated: #1f1f1f;
+  --border: #1f1f1f;
+  --border-2: #2a2a2a;
+  --border-3: #3a3a3a;
+  --text: #fafafa;
+  --text-2: #b8b8b8;
+  --text-3: #777777;
+  --text-4: #4a4a4a;
+  --accent: #d4ff3e;
+  --accent-2: #c4f135;
+  --accent-soft: rgba(212, 255, 62, 0.1);
+  --accent-soft-2: rgba(212, 255, 62, 0.05);
+  --accent-glow: rgba(212, 255, 62, 0.4);
+  --sans: 'Geist', -apple-system, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1000;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.grid-bg {
+  position: fixed; inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 640px) { .container { padding: 0 20px; } }
+
+/* ============ NAV ============ */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,10,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.logo .dot { color: var(--accent); }
+.nav-links {
+  display: flex; gap: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-3);
+}
+.nav-links a { transition: color 0.2s; position: relative; }
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; left: 0; right: 0;
+  height: 2px; background: var(--accent);
+}
+.nav-right {
+  display: flex; align-items: center; gap: 14px;
+}
+.lang-toggle {
+  display: inline-flex;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.lang-toggle button {
+  background: transparent;
+  color: var(--text-3);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  transition: all 0.15s;
+}
+.lang-toggle button.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+.lang-toggle button:not(.active):hover { color: var(--text); }
+.nav-cta {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--text); transform: translateY(-1px); }
+@media (max-width: 1100px) { .nav-links { display: none; } }
+@media (max-width: 640px) { .nav-cta { display: none; } }
+
+/* ============ HERO ============ */
+.hero {
+  padding: 80px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 2; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-2);
+  padding: 8px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  margin-bottom: 32px;
+}
+.pulse {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  70% { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+h1.headline {
+  font-family: var(--sans);
+  font-size: clamp(48px, 9vw, 132px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  margin-bottom: 36px;
+  text-transform: uppercase;
+}
+h1.headline .accent-text { color: var(--accent); display: inline-block; }
+
+.hero-sub {
+  font-size: 19px;
+  color: var(--text-2);
+  max-width: 680px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+.hero-sub strong { color: var(--text); font-weight: 500; }
+
+.hero-cta {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 26px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  transition: all 0.25s;
+  cursor: pointer;
+  border: 1px solid var(--border-2);
+}
+.btn.primary {
+  background: var(--accent); color: var(--bg); border-color: var(--accent);
+}
+.btn.primary:hover {
+  background: var(--text); border-color: var(--text); transform: translateY(-2px);
+}
+.btn.ghost { background: transparent; color: var(--text); }
+.btn.ghost:hover {
+  border-color: var(--accent); color: var(--accent); transform: translateY(-2px);
+}
+.btn svg { width: 14px; height: 14px; }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border-2);
+  border-bottom: 1px solid var(--border-2);
+}
+@media (max-width: 768px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+.hero-stat {
+  padding: 32px 24px;
+  border-right: 1px solid var(--border-2);
+}
+.hero-stat:last-child { border-right: none; }
+@media (max-width: 768px) {
+  .hero-stat:nth-child(2) { border-right: none; }
+  .hero-stat:nth-child(1), .hero-stat:nth-child(2) { border-bottom: 1px solid var(--border-2); }
+}
+.hero-stat-num {
+  font-family: var(--sans);
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.hero-stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-3);
+}
+
+/* ============ TRIPLE ROLE BAR ============ */
+.role-bar {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
+}
+.role-bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+.role-bar-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.role-bar-eyebrow::before { content: '/// '; color: var(--text-4); }
+.role-bar h2 {
+  font-family: var(--sans);
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+.role-bar h2 .accent-text { color: var(--accent); }
+.role-bar-sub {
+  font-size: 15px;
+  color: var(--text-2);
+  max-width: 400px;
+  line-height: 1.6;
+  font-family: var(--mono);
+}
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border-2);
+  border-bottom: 1px solid var(--border-2);
+}
+@media (max-width: 900px) { .role-grid { grid-template-columns: 1fr; } }
+.role-pillar {
+  padding: 48px 36px;
+  border-right: 1px solid var(--border-2);
+  transition: background 0.3s;
+  position: relative;
+}
+.role-pillar:last-child { border-right: none; }
+@media (max-width: 900px) {
+  .role-pillar { border-right: none; border-bottom: 1px solid var(--border-2); }
+  .role-pillar:last-child { border-bottom: none; }
+}
+.role-pillar:hover { background: var(--surface); }
+.role-pillar-num {
+  font-family: var(--mono);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+.role-pillar-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-3);
+  margin-bottom: 12px;
+}
+.role-pillar h3 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.role-pillar p {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+
+/* ============ TICKER ============ */
+.ticker-section {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--bg-3);
+}
+.ticker-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-3);
+  margin-bottom: 16px;
+  text-align: center;
+}
+.ticker {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  animation: scroll 50s linear infinite;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-item {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.ticker-item::before { content: '/'; color: var(--accent); }
+
+/* ============ SECTIONS ============ */
+section {
+  padding: 120px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.section-eyebrow .slash { color: var(--text-4); }
+.section-title {
+  font-family: var(--sans);
+  font-size: clamp(40px, 6.5vw, 88px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  max-width: 900px;
+}
+.section-title .accent-text { color: var(--accent); }
+.section-intro {
+  font-size: 18px;
+  color: var(--text-2);
+  max-width: 720px;
+  line-height: 1.6;
+  margin-bottom: 64px;
+}
+
+/* ============ ABOUT ============ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } }
+.about-text p {
+  font-size: 17px;
+  color: var(--text-2);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.about-text p strong { color: var(--text); font-weight: 500; }
+.about-text p .hi { color: var(--accent); font-weight: 500; }
+
+.signal-card {
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+  padding: 32px;
+  border-radius: 6px;
+}
+.signal-card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-3);
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.signal-card-label::before {
+  content: ''; width: 6px; height: 6px;
+  background: var(--accent); border-radius: 50%;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+.signal-card h4 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.signal-list { list-style: none; }
+.signal-list li {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-2);
+  padding: 12px 0;
+  border-top: 1px solid var(--border-2);
+  display: flex; justify-content: space-between; gap: 12px;
+  letter-spacing: 0.5px;
+}
+.signal-list li:first-child { border-top: none; }
+.signal-list .val { color: var(--accent); font-weight: 600; text-align: right; }
+
+/* ============ TOOLCHAIN MATRIX ============ */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border-2);
+  border-left: 1px solid var(--border-2);
+}
+@media (max-width: 900px) { .matrix-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .matrix-grid { grid-template-columns: 1fr; } }
+.matrix-cell {
+  padding: 36px 32px;
+  border-right: 1px solid var(--border-2);
+  border-bottom: 1px solid var(--border-2);
+  background: var(--bg);
+  transition: background 0.3s;
+}
+.matrix-cell:hover { background: var(--surface); }
+.matrix-cell-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.matrix-cell-tag::before { content: '[ '; color: var(--text-3); }
+.matrix-cell-tag::after { content: ' ]'; color: var(--text-3); }
+.matrix-cell h4 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+.matrix-tools {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.9;
+}
+.matrix-tools .sep { color: var(--accent); margin: 0 4px; }
+
+/* ============ LOGS ============ */
+.log-entry {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+.log-entry:first-of-type { border-top: none; padding-top: 0; }
+@media (max-width: 768px) {
+  .log-entry { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+}
+.log-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.log-meta .status {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+.log-meta .status::before { content: '● '; font-size: 8px; }
+.log-entry h3 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.log-company {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+}
+.log-company .loc { color: var(--text-3); }
+.log-entry ul { list-style: none; }
+.log-entry li {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+  padding-left: 28px;
+  position: relative;
+  margin-bottom: 12px;
+}
+.log-entry li::before {
+  content: '//';
+  position: absolute; left: 0;
+  font-family: var(--mono);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ============ CASE FILES ============ */
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 900px) { .case-grid { grid-template-columns: 1fr; } }
+
+.case {
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+  padding: 40px 36px;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.case::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.case:hover { border-color: var(--border-3); transform: translateY(-3px); }
+.case:hover::before { transform: scaleX(1); }
+
+.case-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.case-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--accent);
+  padding: 5px 10px;
+  border: 1px solid var(--accent-soft);
+  background: var(--accent-soft);
+  border-radius: 3px;
+  display: inline-block;
+}
+.case-status {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-3);
+  padding: 5px 0;
+}
+.case-status::before { content: '● '; color: var(--accent); font-size: 8px; }
+
+.case h3 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.case-subtitle {
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 10px;
+  letter-spacing: -0.005em;
+}
+.case-role {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+  letter-spacing: 0.5px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-2);
+}
+.case-block { margin-bottom: 22px; }
+.case-block-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-3);
+  margin-bottom: 10px;
+}
+.case-block-label::before { content: '// '; color: var(--accent); }
+.case-block p {
+  font-size: 14.5px;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+.case-block ul { list-style: none; margin-top: 8px; }
+.case-block li {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+  margin-bottom: 6px;
+  font-family: var(--mono);
+}
+.case-block li::before {
+  content: '›';
+  position: absolute; left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.case-callout {
+  margin-top: 24px;
+  padding: 20px 22px;
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+}
+.case-callout-num {
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.case-callout-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.case-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-2);
+}
+.case-tech {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-2);
+  padding: 5px 10px;
+  background: var(--elevated);
+  border: 1px solid var(--border-2);
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+}
+.case-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: gap 0.2s;
+}
+.case-link:hover { gap: 12px; }
+.case-link svg { width: 12px; height: 12px; }
+
+/* ============ PROTOCOL ============ */
+.protocol-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border-2);
+  border-bottom: 1px solid var(--border-2);
+}
+@media (max-width: 900px) { .protocol-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .protocol-grid { grid-template-columns: 1fr; } }
+.phase {
+  padding: 40px 32px;
+  border-right: 1px solid var(--border-2);
+  transition: background 0.3s;
+}
+.phase:last-child { border-right: none; }
+.phase:hover { background: var(--surface); }
+@media (max-width: 900px) {
+  .phase:nth-child(2) { border-right: none; }
+  .phase:nth-child(1), .phase:nth-child(2) { border-bottom: 1px solid var(--border-2); }
+}
+@media (max-width: 600px) {
+  .phase { border-right: none; border-bottom: 1px solid var(--border-2); }
+  .phase:last-child { border-bottom: none; }
+}
+.phase-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+.phase-num .n { color: var(--accent); font-weight: 600; }
+.phase h4 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.phase p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+
+/* ============ STACK ============ */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 768px) { .stack-grid { grid-template-columns: 1fr; } }
+
+.stack-cell {
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+  padding: 32px;
+  border-radius: 6px;
+}
+.stack-cell h4 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.stack-cell h4::before { content: '['; color: var(--text-3); }
+.stack-cell h4::after { content: ']'; color: var(--text-3); }
+.stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.stack-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  padding: 8px 14px;
+  background: var(--elevated);
+  border: 1px solid var(--border-2);
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.stack-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+/* ============ BACKGROUND ============ */
+.bg-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 80px;
+}
+@media (max-width: 900px) { .bg-grid { grid-template-columns: 1fr; gap: 48px; } }
+.edu-item {
+  padding: 32px 0;
+  border-top: 1px solid var(--border-2);
+}
+.edu-item:first-of-type { border-top: none; padding-top: 0; }
+.edu-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.edu-item h3 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.edu-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+.edu-detail { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+.lang-block {
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+  padding: 32px;
+  border-radius: 6px;
+}
+.lang-block-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+.lang-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-2);
+}
+.lang-item:first-of-type { border-top: none; padding-top: 0; }
+.lang-name { font-size: 20px; font-weight: 500; }
+.lang-level {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ============ CONTACT ============ */
+.contact-section {
+  padding: 140px 0;
+  text-align: center;
+  position: relative;
+  background: radial-gradient(ellipse at center top, var(--accent-soft), transparent 60%);
+}
+.contact-eyebrow {
+  display: inline-flex;
+  align-items: center; gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+.contact-title {
+  font-family: var(--sans);
+  font-size: clamp(48px, 9vw, 128px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.contact-title .accent-text { color: var(--accent); }
+.contact-sub {
+  font-size: 18px;
+  color: var(--text-2);
+  max-width: 620px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+}
+.contact-buttons {
+  display: inline-flex; gap: 12px; flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ============ FOOTER ============ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 0;
+  background: var(--bg-2);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-3);
+}
+.footer-inner .accent { color: var(--accent); }
+.footer-tags { display: flex; gap: 24px; flex-wrap: wrap; }
+
+/* ============ FADE-IN ============ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+</style>
+</head>
+
+<body>
+<div class="grid-bg"></div>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">MANDAR<span class="dot">/</span>JUNAGADE</a>
+    <div class="nav-links">
+      <a href="#about" data-i18n="nav_about">Profil</a>
+      <a href="#matrix" data-i18n="nav_matrix">Toolchain</a>
+      <a href="#experience" data-i18n="nav_logs">Logbuch</a>
+      <a href="#projects" data-i18n="nav_cases">Projektakten</a>
+      <a href="#protocol" data-i18n="nav_protocol">Protokoll</a>
+      <a href="#stack" data-i18n="nav_stack">Stack</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button data-lang="de" class="active">DE</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <a href="#contact" class="nav-cta" data-i18n="nav_cta">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="container hero-content">
+    <div class="eyebrow">
+      <span class="pulse"></span>
+      <span data-i18n="hero_eyebrow">Mannheim, DE · Verfügbar für neue Projekte</span>
+    </div>
+
+    <h1 class="headline">
+      <span data-i18n="hero_h1">AI-Native</span><br>
+      <span class="accent-text" data-i18n="hero_h2">Delivery.</span><br>
+      <span data-i18n="hero_h3">Engineering</span><br>
+      <span data-i18n="hero_h4">Discipline.</span>
+    </h1>
+
+    <p class="hero-sub" data-i18n="hero_sub">
+      Ich bin <strong>Mandar Junagade</strong> — AI Technical Project Manager, Software Engineer &amp; AI Engineer. Ich leite die Lieferung KI-nativer Produkte, bei denen Engineering-Teams und AI Coding Agents Hand in Hand arbeiten. Ich übersetze Geschäftsziele in produktive Software mit <strong>Claude Code, OpenAI, LangChain, RAG</strong>, modernen Full-Stack-Systemen und tiefer Automatisierung. <strong>5+ Jahre. 15+ Projekte. 95% Termintreue.</strong>
+    </p>
+
+    <div class="hero-cta">
+      <a href="#contact" class="btn primary">
+        <span data-i18n="hero_cta_1">Kontakt aufnehmen</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#projects" class="btn ghost" data-i18n="hero_cta_2">Projektakten ansehen</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">5+</div>
+        <div class="hero-stat-label" data-i18n="hero_stat_1">Jahre im Einsatz</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">15+</div>
+        <div class="hero-stat-label" data-i18n="hero_stat_2">Projekte ausgeliefert</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">95%</div>
+        <div class="hero-stat-label" data-i18n="hero_stat_3">Termintreue</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">90%</div>
+        <div class="hero-stat-label" data-i18n="hero_stat_4">Manueller Aufwand reduziert</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ TRIPLE ROLE BAR ============ -->
+<section class="role-bar" id="role-bar">
+  <div class="container">
+    <div class="role-bar-head">
+      <div>
+        <div class="role-bar-eyebrow" data-i18n="role_eyebrow">Operating Profile</div>
+        <h2><span data-i18n="role_h_1">Drei Rollen.</span><br><span class="accent-text" data-i18n="role_h_2">Ein Operator.</span></h2>
+      </div>
+      <div class="role-bar-sub" data-i18n="role_sub">
+        Ich operiere gleichzeitig in drei Disziplinen — Projektleitung, Softwareentwicklung und KI-Engineering. Das ist der Hebel.
+      </div>
+    </div>
+
+    <div class="role-grid">
+      <div class="role-pillar">
+        <div class="role-pillar-num">01</div>
+        <div class="role-pillar-tag" data-i18n="role_1_tag">// Lead</div>
+        <h3 data-i18n="role_1_title">Project Manager</h3>
+        <p data-i18n="role_1_desc">PRDs, technische Spezifikationen, Akzeptanzkriterien, Sprint-Planung, Stakeholder-Steuerung. End-to-End-Lieferung von der Idee bis zum Go-Live — 95% Termintreue über 15+ Projekte. Agile, Scrum, Kanban, BPMN 2.0, JIRA.</p>
+      </div>
+      <div class="role-pillar">
+        <div class="role-pillar-num">02</div>
+        <div class="role-pillar-tag" data-i18n="role_2_tag">// Build</div>
+        <h3 data-i18n="role_2_title">Software Engineer</h3>
+        <p data-i18n="role_2_desc">Production-Code in React, Next.js, Python (Django/Flask), Node.js. REST &amp; GraphQL APIs, Microservices, PostgreSQL/MySQL. Cloud-Architektur auf AWS &amp; GCP mit Docker und CI/CD. Hands-on, nicht nur am Whiteboard.</p>
+      </div>
+      <div class="role-pillar">
+        <div class="role-pillar-num">03</div>
+        <div class="role-pillar-tag" data-i18n="role_3_tag">// Ship AI</div>
+        <h3 data-i18n="role_3_title">AI Engineer</h3>
+        <p data-i18n="role_3_desc">LLM-Orchestrierung mit Claude (Anthropic) &amp; OpenAI, RAG-Systeme, Vektor-Datenbanken, agentische Workflows. AI-assistierte Entwicklung mit Claude Code &amp; Cursor. Production-AI mit Quality Gates und Output-Review — keine Demos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker-section">
+  <div class="ticker-label" data-i18n="ticker_label">/// Stack Operating</div>
+  <div class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-item">Claude Code</div>
+      <div class="ticker-item">OpenAI</div>
+      <div class="ticker-item">Anthropic</div>
+      <div class="ticker-item">LangChain</div>
+      <div class="ticker-item">RAG</div>
+      <div class="ticker-item">Vector DB</div>
+      <div class="ticker-item">Agentic AI</div>
+      <div class="ticker-item">n8n</div>
+      <div class="ticker-item">Make.com</div>
+      <div class="ticker-item">Zapier</div>
+      <div class="ticker-item">React</div>
+      <div class="ticker-item">Next.js</div>
+      <div class="ticker-item">Python</div>
+      <div class="ticker-item">Django</div>
+      <div class="ticker-item">PostgreSQL</div>
+      <div class="ticker-item">AWS</div>
+      <div class="ticker-item">GCP</div>
+      <div class="ticker-item">Docker</div>
+      <div class="ticker-item">JIRA</div>
+      <div class="ticker-item">BPMN 2.0</div>
+      <div class="ticker-item">ElevenLabs</div>
+      <div class="ticker-item">Sarvam</div>
+      <div class="ticker-item">HubSpot</div>
+      <div class="ticker-item">Twilio</div>
+      <div class="ticker-item">Cursor</div>
+      <div class="ticker-item">Windsurf</div>
+      <!-- duplicate -->
+      <div class="ticker-item">Claude Code</div>
+      <div class="ticker-item">OpenAI</div>
+      <div class="ticker-item">Anthropic</div>
+      <div class="ticker-item">LangChain</div>
+      <div class="ticker-item">RAG</div>
+      <div class="ticker-item">Vector DB</div>
+      <div class="ticker-item">Agentic AI</div>
+      <div class="ticker-item">n8n</div>
+      <div class="ticker-item">Make.com</div>
+      <div class="ticker-item">Zapier</div>
+      <div class="ticker-item">React</div>
+      <div class="ticker-item">Next.js</div>
+      <div class="ticker-item">Python</div>
+      <div class="ticker-item">Django</div>
+      <div class="ticker-item">PostgreSQL</div>
+      <div class="ticker-item">AWS</div>
+      <div class="ticker-item">GCP</div>
+      <div class="ticker-item">Docker</div>
+      <div class="ticker-item">JIRA</div>
+      <div class="ticker-item">BPMN 2.0</div>
+      <div class="ticker-item">ElevenLabs</div>
+      <div class="ticker-item">Sarvam</div>
+      <div class="ticker-item">HubSpot</div>
+      <div class="ticker-item">Twilio</div>
+      <div class="ticker-item">Cursor</div>
+      <div class="ticker-item">Windsurf</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="container">
+    <div class="section-eyebrow"><span class="slash">///</span> <span data-i18n="about_eyebrow">Strategisches Profil</span></div>
+    <h2 class="section-title">
+      <span data-i18n="about_h_1">Die Brücke zwischen</span><br>
+      <span data-i18n="about_h_2">Kunden, Code und</span> <span class="accent-text" data-i18n="about_h_3">AI Agents.</span>
+    </h2>
+    <p class="section-intro" data-i18n="about_intro">
+      Kein Forscher. Kein Generalist-PM. Ich bin der Operator, der KI in Produktion bringt — mit strukturierter Lieferung, Hands-on-Engineering und tiefer KI-Werkzeugkette.
+    </p>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p data-i18n="about_p1"><strong>5+ Jahre</strong> End-to-End-Lieferung in <span class="hi">Healthcare, Real Estate und Travel-Tech</span> — Leitung KI-nativer Produktentwicklung, bei der Engineering-Teams und AI Coding Agents zusammen arbeiten.</p>
+        <p data-i18n="about_p2">Ich übersetze Geschäftsziele in strukturierte <strong>PRDs, technische Spezifikationen und Akzeptanzkriterien</strong>, dann steuere ich agile Lieferung bis Cutover und Go-Live in verteilten Teams.</p>
+        <p data-i18n="about_p3">Ich orchestriere <span class="hi">Claude Code, OpenAI APIs, LangChain und RAG-Pipelines</span> neben React/Next.js Frontends und Python Backends — mit der Projektdisziplin, alles termintreu, budgettreu und produktionsreif zu halten.</p>
+        <p data-i18n="about_p4">Track Record: <strong>95% Termintreue</strong> über 15+ Projekte, <strong>90% Reduktion manuellen Aufwands</strong> durch intelligente Automatisierung, und nachweisliche Fähigkeit, Scope-Creep, Abhängigkeiten und technische Mehrdeutigkeit in Deep-Tech-Umgebungen zu managen.</p>
+      </div>
+
+      <div class="signal-card">
+        <div class="signal-card-label" data-i18n="signal_label">Operating Signals</div>
+        <h4 data-i18n="signal_title">Aktuell aktiv für Kunden in DACH &amp; EU.</h4>
+        <ul class="signal-list">
+          <li><span data-i18n="signal_1">Standort</span> <span class="val">Mannheim, DE</span></li>
+          <li><span data-i18n="signal_2">Zeitzone</span> <span class="val">CET / UTC+1</span></li>
+          <li><span data-i18n="signal_3">Sprachen</span> <span class="val">DE · EN · HI</span></li>
+          <li><span data-i18n="signal_4">Engagement</span> <span class="val" data-i18n="signal_4_val">Festanstellung / Freelance</span></li>
+          <li><span data-i18n="signal_5">Remote</span> <span class="val" data-i18n="signal_5_val">Ja</span></li>
+          <li><span data-i18n="signal_6">Status</span> <span class="val" data-i18n="signal_6_val">● Verfügbar</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLCHAIN MATRIX ============ -->
+<section id="matrix">
+  <div class="container">
+    <div class="section-eyebrow"><span class="slash">///</span> <span data-i18n="matrix_eyebrow">AI-Native Toolchain</span></div>
+    <h2 class="section-title">
+      <span data-i18n="matrix_h_1">Die Werkzeuge,</span><br>
+      <span data-i18n="matrix_h_2">die ich</span> <span class="accent-text" data-i18n="matrix_h_3">operiere.</span>
+    </h2>
+    <p class="section-intro" data-i18n="matrix_intro">
+      KI ist nicht ein Werkzeug — es ist ein Stack. Von Modellen über Coding-Agents bis hin zu Automation-Layern: hier ist meine produktiv eingesetzte Toolchain.
+    </p>
+
+    <div class="matrix-grid">
+
+      <div class="matrix-cell">
+        <div class="matrix-cell-tag" data-i18n="m1_tag">AI MODELS</div>
+        <h4 data-i18n="m1_title">Modelle &amp; Plattformen</h4>
+        <div class="matrix-tools">
+          Claude (Anthropic) <span class="sep">/</span> OpenAI (GPT-4o) <span class="sep">/</span> Google Gemini <span class="sep">/</span> ElevenLabs <span class="sep">/</span> Sarvam AI <span class="sep">/</span> Whisper <span class="sep">/</span> Open-Source LLMs
+        </div>
+      </div>
+
+      <div class="matrix-cell">
+        <div class="matrix-cell-tag" data-i18n="m2_tag">CODING AGENTS</div>
+        <h4 data-i18n="m2_title">AI Coding Agents</h4>
+        <div class="matrix-tools">
+          Claude Code <span class="sep">/</span> Cursor <span class="sep">/</span> Windsurf <span class="sep">/</span> GitHub Copilot <span class="sep">/</span> v0 <span class="sep">/</span> Bolt
+        </div>
+      </div>
+
+      <div class="matrix-cell">
+        <div class="matrix-cell-tag" data-i18n="m3_tag">ORCHESTRATION</div>
+        <h4 data-i18n="m3_title">Orchestrierung &amp; RAG</h4>
+        <div class="matrix-tools">
+          LangChain <span class="sep">/</span> LlamaIndex <span class="sep">/</span> ChromaDB <span class="sep">/</span> Qdrant <span class="sep">/</span> Pinecone <span class="sep">/</span> OpenAI Embeddings <span class="sep">/</span> Sentence Transformers
+        </div>
+      </div>
+
+      <div class="matrix-cell">
+        <div class="matrix-cell-tag" data-i18n="m4_tag">AUTOMATION</div>
+        <h4 data-i18n="m4_title">Workflow-Automatisierung</h4>
+        <div class="matrix-tools">
+          n8n <span class="sep">/</span> Make.com <span class="sep">/</span> Zapier <span class="sep">/</span> Webhooks <span class="sep">/</span> Custom APIs <span class="sep">/</span> Cron Pipelines <span class="sep">/</span> Event-Driven Architecture
+        </div>
+      </div>
+
+      <div class="matrix-cell">
+        <div class="matrix-cell-tag" data-i18n="m5_tag">CRM &amp; BUSINESS</div>
+        <h4 data-i18n="m5_title">CRM &amp; Geschäftssysteme</h4>
+        <div class="matrix-tools">
+          HubSpot <span class="sep">/</span> Salesforce <span class="sep">/</span> Pipedrive <span class="sep">/</span> Custom CRMs <span class="sep">/</span> Airtable <span class="sep">/</span> Notion API
+        </div>
+      </div>
+
+      <div class="matrix-cell">
+        <div class="matrix-cell-tag" data-i18n="m6_tag">COMMUNICATION</div>
+        <h4 data-i18n="m6_title">Kommunikationskanäle</h4>
+        <div class="matrix-tools">
+          WhatsApp Business API <span class="sep">/</span> Twilio <span class="sep">/</span> SendGrid <span class="sep">/</span> Slack <span class="sep">/</span> Teams <span class="sep">/</span> Telephony APIs
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="container">
+    <div class="section-eyebrow"><span class="slash">///</span> <span data-i18n="exp_eyebrow">Engineering-Logbuch</span></div>
+    <h2 class="section-title">
+      <span data-i18n="exp_h_1">Wo ich</span> <span class="accent-text" data-i18n="exp_h_2">geliefert habe.</span>
+    </h2>
+    <p class="section-intro" data-i18n="exp_intro">Chronologisches Logbuch operativer Rollen, Missionen und Ergebnisse.</p>
+
+    <div>
+      <div class="log-entry">
+        <div class="log-meta">
+          <span data-i18n="exp_1_date">Nov 2023 — heute</span>
+          <div><span class="status" data-i18n="exp_1_status">Aktiv</span></div>
+        </div>
+        <div>
+          <h3 data-i18n="exp_1_role">IT-Projektmanager &amp; AI Engineer</h3>
+          <div class="log-company">Miamakler Immobilien mit Herz GmbH <span class="loc">— Schwetzingen, DE</span></div>
+          <ul>
+            <li data-i18n="exp_1_b1">End-to-End-Verantwortung für 5+ parallele technische Projekte — Scope, PRDs, Timelines, Risiken — bei 95% Termintreue, 18% Produktivitätssteigerung und 15% Kostenersparnis.</li>
+            <li data-i18n="exp_1_b2">Steuerung KI-assistierter &amp; agentischer Entwicklungs-Workflows zusammen mit Engineering-Teams: Review von AI-Outputs gegen Akzeptanzkriterien, Iterationsschleifen, Quality Gates.</li>
+            <li data-i18n="exp_1_b3">Architektur von KI-Lösungen auf LLM-Plattformen für Dokumentenverarbeitung, Kundenkommunikation und Lead-Qualifizierung; integriert mit React/Next.js Frontends und REST-APIs auf Cloud-Infrastruktur.</li>
+            <li data-i18n="exp_1_b4">Design &amp; Rollout von 20+ Automatisierungs-Workflows über CRM, Marketing und Operations — 90% Reduktion manueller Datenpflege.</li>
+            <li data-i18n="exp_1_b5">Mehrsprachige LLM-Chatbots (DE/EN) mit 85% Erstlösungsquote; Integration prädiktiver Analytik für Immobilienbewertung und Markttrends.</li>
+            <li data-i18n="exp_1_b6">Leitung eines verteilten, funktionsübergreifenden Teams aus 8 Entwicklern und Designern (Sprint Planning, Daily Standups, Retrospektiven).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><span data-i18n="exp_2_date">Mai 2021 — Okt 2023</span></div>
+        <div>
+          <h3 data-i18n="exp_2_role">Junior Projektmanager</h3>
+          <div class="log-company">Miracle Consulting GmbH <span class="loc">— Plankstadt, DE</span></div>
+          <ul>
+            <li data-i18n="exp_2_b1">Erfolgreiche Umsetzung von 10+ Kundenprojekten von der Initiierung bis zum Go-Live mit JIRA, Scrum und Kanban; Steuerung von Scope, Abhängigkeiten und technischen Unklarheiten über parallele Engagements hinweg.</li>
+            <li data-i18n="exp_2_b2">Erstellung technischer Spezifikationen, Architektur-Notizen und Entscheidungslogs; Aufbau automatisierter Reporting- und Workflow-Lösungen — 60% schnellere Reporterstellung.</li>
+            <li data-i18n="exp_2_b3">Steigerung der Kundenzufriedenheit um 20% durch transparente Stakeholder-Kommunikation und strukturierte Discovery-Sessions.</li>
+            <li data-i18n="exp_2_b4">Koordination funktionsübergreifender Teams aus 3 Abteilungen; wiederverwendbare Projektvorlagen und Akzeptanzkriterien-Checklisten.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="log-entry">
+        <div class="log-meta"><span data-i18n="exp_3_date">Apr 2020 — Apr 2021</span></div>
+        <div>
+          <h3 data-i18n="exp_3_role">Quality Assurance Specialist</h3>
+          <div class="log-company">IntelliShop AG <span class="loc">— Karlsruhe, DE</span></div>
+          <ul>
+            <li data-i18n="exp_3_b1">Manuelle &amp; automatisierte Tests für eine B2B-E-Commerce-Plattform — 35% mehr Defekterkennung vor Deployment.</li>
+            <li data-i18n="exp_3_b2">Mitwirkung in Sprint Planning und Retrospektiven; Etablierung von Testdokumentationen und QA-Standards.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE FILES ============ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-eyebrow"><span class="slash">///</span> <span data-i18n="cases_eyebrow">Projektakten</span></div>
+    <h2 class="section-title">
+      <span data-i18n="cases_h_1">Was ich</span> <span class="accent-text" data-i18n="cases_h_2">gebaut habe.</span>
+    </h2>
+    <p class="section-intro" data-i18n="cases_intro">
+      Ausgewählte Produktivsysteme in Healthcare, Real Estate, Travel-Tech und Hospitality — jedes hat konkrete Probleme mit konkreter KI gelöst.
+    </p>
+
+    <div class="case-grid">
+
+      <!-- ONEMEDAI -->
+      <div class="case">
+        <div class="case-head">
+          <span class="case-tag">[ HEALTHCARE_AI ]</span>
+          <span class="case-status" data-i18n="case_1_status">Live · Multi-Hospital</span>
+        </div>
+        <h3>OneMedAI</h3>
+        <div class="case-subtitle" data-i18n="case_1_subtitle">AI-natives Krankenhaus-Informations­system (HIS)</div>
+        <div class="case-role" data-i18n="case_1_role">Project Lead · AI Integration Specialist</div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_challenge">Challenge</div>
+          <p data-i18n="case_1_challenge">Konzeption und Lieferung eines KI-nativen Krankenhaus-Informationssystems (HIS), das mehrere Krankenhäuser betreiben kann — mit klinischer KI in jedem Modul, voller HIPAA/DSGVO-Konformität und null Toleranz für klinische Fehler.</p>
+        </div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_execution">Execution</div>
+          <ul data-i18n-list="case_1_exec">
+            <li>EMR mit KI-Triage, OPD-, IPD- &amp; Notfallmodule</li>
+            <li>DICOM-Bildgebungs-Pipeline mit Cloud-KI-Analyse</li>
+            <li>Echtzeit-Speech-to-Text für Arzt-Patient-Gespräche</li>
+            <li>Automatisierte Entlassbrief-Generierung via LLM</li>
+            <li>Apotheke, Abrechnung, Labor &amp; RBAC durchgängig integriert</li>
+            <li>Compliance-Reviews und Multi-Tenant-Architektur</li>
+          </ul>
+        </div>
+
+        <div class="case-callout">
+          <div class="case-callout-num" data-i18n="case_1_callout_num">5+ Krankenhäuser</div>
+          <div class="case-callout-label" data-i18n="case_1_callout_label">Aktiv im Betrieb · HIPAA + DSGVO</div>
+        </div>
+
+        <div class="case-stack">
+          <span class="case-tech">DICOM</span>
+          <span class="case-tech">GCP / AWS</span>
+          <span class="case-tech">Django</span>
+          <span class="case-tech">Python</span>
+          <span class="case-tech">PostgreSQL</span>
+          <span class="case-tech">Docker</span>
+          <span class="case-tech">Claude</span>
+          <span class="case-tech">OpenAI</span>
+        </div>
+      </div>
+
+      <!-- MIAMAKLER AI SUITE -->
+      <div class="case">
+        <div class="case-head">
+          <span class="case-tag">[ REAL_ESTATE_AI ]</span>
+          <span class="case-status" data-i18n="case_2_status">Live · DE/EN</span>
+        </div>
+        <h3>Miamakler AI Suite</h3>
+        <div class="case-subtitle" data-i18n="case_2_subtitle">AI-natives CRM für deutsche Immobilien</div>
+        <div class="case-role" data-i18n="case_2_role">Product Owner · Architect · Lead Engineer</div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_challenge">Challenge</div>
+          <p data-i18n="case_2_challenge">Ein traditionelles deutsches Maklerbüro in ein KI-natives Vertriebssystem verwandeln — manuelle Lead-Qualifizierung, mehrsprachige Kundenkommunikation und Dokumentenverarbeitung durch Software ersetzen, ohne den Tagesbetrieb zu stören.</p>
+        </div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_execution">Execution</div>
+          <ul data-i18n-list="case_2_exec">
+            <li>AI-natives CRM mit intelligenter Lead-Qualifizierung</li>
+            <li>Mehrsprachige LLM-Chatbots (DE/EN), 85% Erstlösungsquote</li>
+            <li>Dokumenten-KI für Exposés, Verträge, Mietverträge</li>
+            <li>Prädiktive Modelle für Immobilienbewertung &amp; Markttrends</li>
+            <li>20+ n8n-Workflows zwischen CRM, Marketing &amp; Operations</li>
+            <li>WhatsApp-Integration für direkte Kundeninteraktion</li>
+          </ul>
+        </div>
+
+        <div class="case-callout">
+          <div class="case-callout-num" data-i18n="case_2_callout_num">85% Resolution</div>
+          <div class="case-callout-label" data-i18n="case_2_callout_label">Erstkontakt-Lösungsquote · DE/EN</div>
+        </div>
+
+        <div class="case-stack">
+          <span class="case-tech">LLM Platforms</span>
+          <span class="case-tech">n8n</span>
+          <span class="case-tech">Next.js</span>
+          <span class="case-tech">Python</span>
+          <span class="case-tech">PostgreSQL</span>
+          <span class="case-tech">WhatsApp API</span>
+          <span class="case-tech">OpenAI</span>
+        </div>
+      </div>
+
+      <!-- PACE ALIGN -->
+      <div class="case">
+        <div class="case-head">
+          <span class="case-tag">[ PHARMA_AI ]</span>
+          <span class="case-status" data-i18n="case_3_status">Live · KSA</span>
+        </div>
+        <h3>PACE Align</h3>
+        <div class="case-subtitle" data-i18n="case_3_subtitle">AI-natives Patient-Support-Ökosystem für Pharma</div>
+        <div class="case-role" data-i18n="case_3_role">Technical Project Manager · AI Engineer</div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_challenge">Challenge</div>
+          <p data-i18n="case_3_challenge">Lieferung einer KI-getriebenen Plattform, die pharmazeutische Innovatoren mit Patient Support Programs (PSPs) in Saudi-Arabien verbindet — mit Echtzeit-Marktintelligenz, Compliance-First-Architektur und Sub-10-Sekunden-Patientenaufnahme.</p>
+        </div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_execution">Execution</div>
+          <ul data-i18n-list="case_3_exec">
+            <li>Sub-10s Patient-Enrollment via Barcode Gateway</li>
+            <li>Zero-Math Clinical Engine für automatische Dosierungspläne</li>
+            <li>Live-Sankey-Dashboards für Wettbewerber-Patientenfluss</li>
+            <li>Predictive Kanban Triage für Hochrisiko-Patienten</li>
+            <li>Zero-PII Pharma-Firewall &amp; SFDA/PDPL-Compliance</li>
+            <li>Sovereign Cloud Hosting in KSA, vollständige Datensouveränität</li>
+          </ul>
+        </div>
+
+        <div class="case-callout">
+          <div class="case-callout-num" data-i18n="case_3_callout_num">Sub-10s Enrollment</div>
+          <div class="case-callout-label" data-i18n="case_3_callout_label">SFDA + PDPL · Sovereign Cloud</div>
+        </div>
+
+        <div class="case-stack">
+          <span class="case-tech">Next.js</span>
+          <span class="case-tech">Python</span>
+          <span class="case-tech">PostgreSQL</span>
+          <span class="case-tech">AWS KSA</span>
+          <span class="case-tech">RBAC</span>
+          <span class="case-tech">K-Anonymity</span>
+          <span class="case-tech">ISO 27001</span>
+        </div>
+
+        <a href="https://mypacehub.com/" target="_blank" rel="noopener" class="case-link">
+          <span data-i18n="case_visit">Projekt besuchen</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- MEDIDESK -->
+      <div class="case">
+        <div class="case-head">
+          <span class="case-tag">[ PATIENT_COMMS ]</span>
+          <span class="case-status" data-i18n="case_4_status">Live in DE</span>
+        </div>
+        <h3>MediDesk</h3>
+        <div class="case-subtitle" data-i18n="case_4_subtitle">KI-Sprachagent für deutsche Arztpraxen</div>
+        <div class="case-role" data-i18n="case_4_role">Project Manager · Lead AI Engineer</div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_challenge">Challenge</div>
+          <p data-i18n="case_4_challenge">Eine DSGVO-konforme Patientenkommunikationsplattform aufbauen, die deutschsprachige Terminbuchung, Patientenanfragen und Follow-up automatisiert — über Telefon und Chat, in mehreren Arztpraxen.</p>
+        </div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_execution">Execution</div>
+          <ul data-i18n-list="case_4_exec">
+            <li>KI-Sprachagent für Terminbuchung &amp; Anfragen in Deutsch</li>
+            <li>Telefonie-Integration mit Speech-to-Text in Echtzeit</li>
+            <li>Automatisierte Terminerinnerungen via SMS/WhatsApp</li>
+            <li>Patientenaufnahme- und Triage-Workflows</li>
+            <li>DSGVO-konforme Datenverarbeitung &amp; Audit-Logs</li>
+            <li>Prompt-Iteration mit klinischem Feedback-Loop</li>
+          </ul>
+        </div>
+
+        <div class="case-callout">
+          <div class="case-callout-num" data-i18n="case_4_callout_num">24/7 Aktiv</div>
+          <div class="case-callout-label" data-i18n="case_4_callout_label">Deutsche Sprach-KI · DSGVO-konform</div>
+        </div>
+
+        <div class="case-stack">
+          <span class="case-tech">LLM Platform</span>
+          <span class="case-tech">Speech-to-Text</span>
+          <span class="case-tech">Python</span>
+          <span class="case-tech">Twilio</span>
+          <span class="case-tech">ElevenLabs</span>
+          <span class="case-tech">n8n</span>
+        </div>
+      </div>
+
+      <!-- ROAD TRIP AI PLANNER -->
+      <div class="case">
+        <div class="case-head">
+          <span class="case-tag">[ TRAVEL_TECH · RAG ]</span>
+          <span class="case-status" data-i18n="case_5_status">Live · Production</span>
+        </div>
+        <h3>Road Trip AI Planner</h3>
+        <div class="case-subtitle" data-i18n="case_5_subtitle">RAG-basierte Reise-App für Route 66</div>
+        <div class="case-role" data-i18n="case_5_role">Project Manager · AI Architect</div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_challenge">Challenge</div>
+          <p data-i18n="case_5_challenge">Hochwertige, personalisierte Roadtrip-Routen on-demand generieren — aus massiven Datensätzen von Restaurants, Sehenswürdigkeiten, Unterkünften, Wetter und Bewertungen, mit Echtzeit-Datenaggregation.</p>
+        </div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_execution">Execution</div>
+          <ul data-i18n-list="case_5_exec">
+            <li>RAG-System mit semantischer Suche über 10.000+ POIs</li>
+            <li>LLM-Orchestrierung für Reiserouten-Generierung</li>
+            <li>Echtzeit-Datenaggregation: Maps, Bewertungen, Wetter</li>
+            <li>Vektor-DB für POI-Embeddings und Ähnlichkeitssuche</li>
+            <li>AI-Coding-Workflow für Frontend-Beschleunigung</li>
+            <li>Akzeptanzkriterien für Qualität KI-generierter Routen</li>
+          </ul>
+        </div>
+
+        <div class="case-callout">
+          <div class="case-callout-num" data-i18n="case_5_callout_num">10K+ POIs</div>
+          <div class="case-callout-label" data-i18n="case_5_callout_label">RAG · Vector DB · Semantische Suche</div>
+        </div>
+
+        <div class="case-stack">
+          <span class="case-tech">LLM Orchestration</span>
+          <span class="case-tech">Vector DB</span>
+          <span class="case-tech">Next.js</span>
+          <span class="case-tech">Python</span>
+          <span class="case-tech">REST APIs</span>
+          <span class="case-tech">PostGIS</span>
+        </div>
+      </div>
+
+      <!-- AI POS -->
+      <div class="case">
+        <div class="case-head">
+          <span class="case-tag">[ POS_SYSTEM ]</span>
+          <span class="case-status" data-i18n="case_6_status">Live · Multilingual</span>
+        </div>
+        <h3>AI-Powered POS</h3>
+        <div class="case-subtitle" data-i18n="case_6_subtitle">KI-Kassensystem für Hospitality &amp; Retail</div>
+        <div class="case-role" data-i18n="case_6_role">Product Owner · AI Engineer</div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_challenge">Challenge</div>
+          <p data-i18n="case_6_challenge">Ein traditionelles Kassensystem in eine KI-getriebene Operations-Plattform verwandeln — mit Sprachbestellung, prädiktiver Bestandsführung, dynamischer Preisoptimierung und mehrsprachiger Kundenschnittstelle.</p>
+        </div>
+
+        <div class="case-block">
+          <div class="case-block-label" data-i18n="case_execution">Execution</div>
+          <ul data-i18n-list="case_6_exec">
+            <li>Sprachbestellung in mehreren Sprachen (DE/EN/HI)</li>
+            <li>Prädiktive Bestandsführung auf Basis Verkaufsmustern</li>
+            <li>KI-gestützte Menü- und Preisoptimierung</li>
+            <li>Mehrsprachige Kundenschnittstelle &amp; Self-Service-Kiosk</li>
+            <li>Payment-Integration (Stripe, PayPal, Sumup)</li>
+            <li>Echtzeit-Analytics-Dashboard für Betreiber</li>
+          </ul>
+        </div>
+
+        <div class="case-callout">
+          <div class="case-callout-num" data-i18n="case_6_callout_num">Voice + AI</div>
+          <div class="case-callout-label" data-i18n="case_6_callout_label">Mehrsprachig · Production-Ready</div>
+        </div>
+
+        <div class="case-stack">
+          <span class="case-tech">React</span>
+          <span class="case-tech">Python</span>
+          <span class="case-tech">OpenAI Whisper</span>
+          <span class="case-tech">ElevenLabs</span>
+          <span class="case-tech">Stripe</span>
+          <span class="case-tech">PostgreSQL</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROTOCOL ============ -->
+<section id="protocol">
+  <div class="container">
+    <div class="section-eyebrow"><span class="slash">///</span> <span data-i18n="protocol_eyebrow">Lieferprotokoll</span></div>
+    <h2 class="section-title">
+      <span data-i18n="protocol_h_1">Wie ich</span> <span class="accent-text" data-i18n="protocol_h_2">liefere.</span>
+    </h2>
+    <p class="section-intro" data-i18n="protocol_intro">Jedes Projekt durchläuft eine strukturierte Operations-Sequenz — von Mehrdeutigkeit bis Produktion.</p>
+
+    <div class="protocol-grid">
+      <div class="phase">
+        <div class="phase-num">Phase <span class="n">01</span></div>
+        <h4 data-i18n="phase_1_title">Discovery</h4>
+        <p data-i18n="phase_1_desc">Übersetzung von Geschäftszielen in PRDs, technische Spezifikationen und Akzeptanzkriterien. Identifikation von Abhängigkeiten, Risiken und Integrationspunkten vor der ersten Codezeile.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase <span class="n">02</span></div>
+        <h4 data-i18n="phase_2_title">Architektur</h4>
+        <p data-i18n="phase_2_desc">Design der KI-Integrationsebene, Full-Stack-Architektur und Lieferungs-Roadmap. Entscheidung, wo Claude Code &amp; AI Agents beschleunigen und wo Engineering ownt.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase <span class="n">03</span></div>
+        <h4 data-i18n="phase_3_title">Execution</h4>
+        <p data-i18n="phase_3_desc">Leitung verteilter Teams durch Agile Sprints. Koordination KI-assistierter Coding-Workflows neben menschlichen Entwicklern. Quality Gates, AI-Output-Review, schnelle Entstörung.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-num">Phase <span class="n">04</span></div>
+        <h4 data-i18n="phase_4_title">Go-Live</h4>
+        <p data-i18n="phase_4_desc">Cutover, Monitoring, Wissenstransfer. Übergabe sauberer Dokumentation, Entscheidungslogs und Runbooks. Stabilisierungsphase bis das System sich selbst trägt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack">
+  <div class="container">
+    <div class="section-eyebrow"><span class="slash">///</span> <span data-i18n="stack_eyebrow">Tech Stack</span></div>
+    <h2 class="section-title">
+      <span data-i18n="stack_h_1">Werkzeuge im</span> <span class="accent-text" data-i18n="stack_h_2">Einsatz.</span>
+    </h2>
+    <p class="section-intro" data-i18n="stack_intro">Production-grade Tooling über KI-Lieferung, Full-Stack, Cloud und Projekt-Operations.</p>
+
+    <div class="stack-grid">
+
+      <div class="stack-cell">
+        <h4 data-i18n="s1_title">AI Delivery &amp; Agentic Workflows</h4>
+        <div class="stack-tags">
+          <span class="stack-tag">Claude Code</span>
+          <span class="stack-tag">OpenAI APIs</span>
+          <span class="stack-tag">Anthropic API</span>
+          <span class="stack-tag">LangChain</span>
+          <span class="stack-tag">LlamaIndex</span>
+          <span class="stack-tag">RAG Systems</span>
+          <span class="stack-tag">ChromaDB</span>
+          <span class="stack-tag">Qdrant</span>
+          <span class="stack-tag">Pinecone</span>
+          <span class="stack-tag">Prompt Engineering</span>
+          <span class="stack-tag">Agentic AI</span>
+          <span class="stack-tag">NLP</span>
+        </div>
+      </div>
+
+      <div class="stack-cell">
+        <h4 data-i18n="s2_title">Full-Stack &amp; Architecture</h4>
+        <div class="stack-tags">
+          <span class="stack-tag">React</span>
+          <span class="stack-tag">Next.js</span>
+          <span class="stack-tag">TypeScript</span>
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Django / Flask</span>
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">REST APIs</span>
+          <span class="stack-tag">GraphQL</span>
+          <span class="stack-tag">Microservices</span>
+          <span class="stack-tag">PostgreSQL</span>
+          <span class="stack-tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="stack-cell">
+        <h4 data-i18n="s3_title">Automation Tools</h4>
+        <div class="stack-tags">
+          <span class="stack-tag">n8n</span>
+          <span class="stack-tag">Make.com</span>
+          <span class="stack-tag">Zapier</span>
+          <span class="stack-tag">Webhooks</span>
+          <span class="stack-tag">Cron Jobs</span>
+          <span class="stack-tag">Event-Driven</span>
+          <span class="stack-tag">Custom APIs</span>
+          <span class="stack-tag">Data Pipelines</span>
+        </div>
+      </div>
+
+      <div class="stack-cell">
+        <h4 data-i18n="s4_title">Cloud &amp; DevOps</h4>
+        <div class="stack-tags">
+          <span class="stack-tag">AWS</span>
+          <span class="stack-tag">Google Cloud</span>
+          <span class="stack-tag">Docker</span>
+          <span class="stack-tag">Containerization</span>
+          <span class="stack-tag">CI/CD</span>
+          <span class="stack-tag">GitHub Actions</span>
+          <span class="stack-tag">Vercel</span>
+        </div>
+      </div>
+
+      <div class="stack-cell">
+        <h4 data-i18n="s5_title">Delivery &amp; PM</h4>
+        <div class="stack-tags">
+          <span class="stack-tag">Agile / Scrum / Kanban</span>
+          <span class="stack-tag">PRD Authoring</span>
+          <span class="stack-tag">Technical Specs</span>
+          <span class="stack-tag">BPMN 2.0</span>
+          <span class="stack-tag">JIRA</span>
+          <span class="stack-tag">Confluence</span>
+          <span class="stack-tag">Notion</span>
+          <span class="stack-tag">Risk Management</span>
+        </div>
+      </div>
+
+      <div class="stack-cell">
+        <h4 data-i18n="s6_title">Voice &amp; Communication</h4>
+        <div class="stack-tags">
+          <span class="stack-tag">ElevenLabs</span>
+          <span class="stack-tag">OpenAI Whisper</span>
+          <span class="stack-tag">Sarvam AI</span>
+          <span class="stack-tag">Twilio</span>
+          <span class="stack-tag">WhatsApp API</span>
+          <span class="stack-tag">SendGrid</span>
+          <span class="stack-tag">Telephony APIs</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ BACKGROUND ============ -->
+<section id="background">
+  <div class="container">
+    <div class="section-eyebrow"><span class="slash">///</span> <span data-i18n="bg_eyebrow">Hintergrund</span></div>
+    <h2 class="section-title">
+      <span data-i18n="bg_h_1">Wo ich</span> <span class="accent-text" data-i18n="bg_h_2">ausgebildet wurde.</span>
+    </h2>
+
+    <div class="bg-grid">
+      <div>
+        <div class="edu-item">
+          <div class="edu-tag">[ MASTER ]</div>
+          <h3 data-i18n="edu_1_title">M.Eng — International Business &amp; Engineering</h3>
+          <div class="edu-meta">SRH Hochschule Heidelberg · 2019 — 2021 · Deutschland</div>
+          <p class="edu-detail" data-i18n="edu_1_desc">Interdisziplinäres Engineering mit internationalem Wirtschaftskontext. Grundlage für technisches Projektmanagement und Leitung interkultureller, verteilter Teams.</p>
+        </div>
+        <div class="edu-item">
+          <div class="edu-tag">[ BACHELOR ]</div>
+          <h3 data-i18n="edu_2_title">B.E. — Engineering</h3>
+          <div class="edu-meta">North Maharashtra University · 2014 — 2018 · Indien</div>
+          <p class="edu-detail" data-i18n="edu_2_desc">Engineering-Grundlagen — aufbauend auf Industrieerfahrung als Big Data Developer bei Tata Consultancy Services auf Hadoop-Infrastruktur für HP.</p>
+        </div>
+      </div>
+
+      <div class="lang-block">
+        <div class="lang-block-label" data-i18n="lang_label">[ Sprachen ]</div>
+        <div class="lang-item"><span class="lang-name">Deutsch</span><span class="lang-level">C1 · Pro</span></div>
+        <div class="lang-item"><span class="lang-name">English</span><span class="lang-level">C1 · Pro</span></div>
+        <div class="lang-item"><span class="lang-name">हिन्दी</span><span class="lang-level" data-i18n="lang_native">Muttersprache</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="contact-eyebrow">
+      <span class="pulse"></span>
+      <span data-i18n="contact_eyebrow">Sicherer Kanal offen</span>
+    </div>
+    <h2 class="contact-title">
+      <span data-i18n="contact_h_1">Lass uns etwas</span><br>
+      <span data-i18n="contact_h_2">Reales</span> <span class="accent-text" data-i18n="contact_h_3">bauen.</span>
+    </h2>
+    <p class="contact-sub" data-i18n="contact_sub">
+      Offen für AI-native Delivery-Rollen, technisches Projektmanagement und Beratungs-Engagements in Deutschland, DACH und Remote.
+    </p>
+    <div class="contact-buttons">
+      <a class="btn primary" href="mailto:mandar.junagade@gmail.com">
+        <span data-i18n="contact_btn_1">E-Mail senden</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn ghost" href="https://linkedin.com/in/mandarjunagade" target="_blank" rel="noopener" data-i18n="contact_btn_2">Auf LinkedIn vernetzen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>© 2026 Mandar Junagade <span class="accent">/</span> Mannheim, DE</div>
+      <div class="footer-tags">
+        <span data-i18n="foot_1">Engineering-Disziplin</span>
+        <span class="accent">/</span>
+        <span data-i18n="foot_2">AI-Native Delivery</span>
+        <span class="accent">/</span>
+        <span data-i18n="foot_3">Production-Ready</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============ I18N ============
+const i18n = {
+  de: {}, // German is the default in the HTML — no overrides needed
+  en: {
+    // NAV
+    nav_about: "Profile",
+    nav_matrix: "Toolchain",
+    nav_logs: "Logs",
+    nav_cases: "Case Files",
+    nav_protocol: "Protocol",
+    nav_stack: "Stack",
+    nav_cta: "Contact",
+
+    // HERO
+    hero_eyebrow: "Mannheim, DE · Available for new projects",
+    hero_h1: "AI-Native",
+    hero_h2: "Delivery.",
+    hero_h3: "Engineering",
+    hero_h4: "Discipline.",
+    hero_sub: "I'm <strong>Mandar Junagade</strong> — AI Technical Project Manager, Software Engineer &amp; AI Engineer. I lead delivery of AI-native products where engineering teams and AI coding agents work side by side. I translate business goals into shipped software using <strong>Claude Code, OpenAI, LangChain, RAG</strong>, modern full-stack systems, and deep automation. <strong>5+ years. 15+ projects. 95% on-time.</strong>",
+    hero_cta_1: "Initiate Contact",
+    hero_cta_2: "View Case Files",
+    hero_stat_1: "Years Operating",
+    hero_stat_2: "Projects Shipped",
+    hero_stat_3: "On-Time Delivery",
+    hero_stat_4: "Manual Effort Cut",
+
+    // ROLE BAR
+    role_eyebrow: "Operating Profile",
+    role_h_1: "Three Roles.",
+    role_h_2: "One Operator.",
+    role_sub: "I operate simultaneously across three disciplines — project leadership, software engineering, and AI engineering. That's the leverage.",
+    role_1_tag: "// Lead",
+    role_1_title: "Project Manager",
+    role_1_desc: "PRDs, technical specs, acceptance criteria, sprint planning, stakeholder management. End-to-end delivery from idea to go-live — 95% on-time across 15+ projects. Agile, Scrum, Kanban, BPMN 2.0, JIRA.",
+    role_2_tag: "// Build",
+    role_2_title: "Software Engineer",
+    role_2_desc: "Production code in React, Next.js, Python (Django/Flask), Node.js. REST &amp; GraphQL APIs, microservices, PostgreSQL/MySQL. Cloud architecture on AWS &amp; GCP with Docker and CI/CD. Hands-on, not just whiteboard.",
+    role_3_tag: "// Ship AI",
+    role_3_title: "AI Engineer",
+    role_3_desc: "LLM orchestration with Claude (Anthropic) &amp; OpenAI, RAG systems, vector databases, agentic workflows. AI-assisted development with Claude Code &amp; Cursor. Production AI with quality gates and output review — not demos.",
+
+    // TICKER
+    ticker_label: "/// Stack Operating",
+
+    // ABOUT
+    about_eyebrow: "Strategic Profile",
+    about_h_1: "The Bridge Between",
+    about_h_2: "Clients, Code, and",
+    about_h_3: "AI Agents.",
+    about_intro: "Not a researcher. Not a generalist PM. I'm the operator who ships AI to production — with structured delivery, hands-on engineering, and a deep AI toolchain.",
+    about_p1: "<strong>5+ years</strong> of end-to-end delivery across <span class='hi'>healthcare, real estate, and travel-tech</span> — leading AI-native product builds where engineering teams and AI coding agents work side by side.",
+    about_p2: "I translate business goals into structured <strong>PRDs, technical specifications, and acceptance criteria</strong>, then drive Agile delivery through cutover and go-live across distributed teams.",
+    about_p3: "I orchestrate <span class='hi'>Claude Code, OpenAI APIs, LangChain, and RAG pipelines</span> alongside React/Next.js front-ends and Python back-ends — with the project discipline to keep it all on time, on budget, and production-ready.",
+    about_p4: "Track record: <strong>95% on-time delivery</strong> across 15+ projects, <strong>90% reduction in manual effort</strong> through intelligent automation, and proven ability to manage scope creep, dependencies, and technical ambiguity in deep-tech environments.",
+    signal_label: "Operating Signals",
+    signal_title: "Currently shipping for clients across DACH &amp; EU.",
+    signal_1: "Base of Operations",
+    signal_2: "Time Zone",
+    signal_3: "Languages",
+    signal_4: "Engagement",
+    signal_4_val: "Full-time / Contract",
+    signal_5: "Remote",
+    signal_5_val: "Yes",
+    signal_6: "Status",
+    signal_6_val: "● Available",
+
+    // MATRIX
+    matrix_eyebrow: "AI-Native Toolchain",
+    matrix_h_1: "The Tools",
+    matrix_h_2: "I",
+    matrix_h_3: "Operate.",
+    matrix_intro: "AI isn't one tool — it's a stack. From models to coding agents to automation layers: here's my production-deployed toolchain.",
+    m1_tag: "AI MODELS",
+    m1_title: "Models &amp; Platforms",
+    m2_tag: "CODING AGENTS",
+    m2_title: "AI Coding Agents",
+    m3_tag: "ORCHESTRATION",
+    m3_title: "Orchestration &amp; RAG",
+    m4_tag: "AUTOMATION",
+    m4_title: "Workflow Automation",
+    m5_tag: "CRM &amp; BUSINESS",
+    m5_title: "CRM &amp; Business Systems",
+    m6_tag: "COMMUNICATION",
+    m6_title: "Communication Channels",
+
+    // EXPERIENCE
+    exp_eyebrow: "Engineering Logs",
+    exp_h_1: "Where I've",
+    exp_h_2: "Shipped.",
+    exp_intro: "A chronological log of operating roles, missions, and outcomes.",
+    exp_1_date: "Nov 2023 — Present",
+    exp_1_status: "Active",
+    exp_1_role: "IT Project Manager &amp; AI Engineer",
+    exp_1_b1: "Own end-to-end delivery of 5+ parallel technical projects — scope, PRDs, timelines, risks — at 95% on-time delivery with 18% productivity gain and 15% cost savings.",
+    exp_1_b2: "Coordinate AI-assisted &amp; agentic development workflows alongside human engineering teams: review AI-generated outputs against acceptance criteria, manage iteration loops, enforce quality gates.",
+    exp_1_b3: "Architected AI solutions on LLM platforms for document processing, customer comms, and lead qualification; integrated with React/Next.js front-ends and REST API back-ends on cloud infrastructure.",
+    exp_1_b4: "Designed &amp; rolled out 20+ automation workflows across CRM, marketing, and operations — 90% reduction in manual data entry.",
+    exp_1_b5: "Multilingual LLM chatbots (DE/EN) with 85% resolution rate; integrated predictive analytics for property valuation and market trends.",
+    exp_1_b6: "Lead a distributed, cross-functional team of 8 engineers and designers through sprint planning, daily standups, and retrospectives.",
+    exp_2_date: "May 2021 — Oct 2023",
+    exp_2_role: "Junior Project Manager",
+    exp_2_b1: "Delivered 10+ client software projects from initiation through go-live using JIRA, Scrum, and Kanban; managed scope creep, dependencies, and technical ambiguity across overlapping engagements.",
+    exp_2_b2: "Authored technical specifications, architecture notes, and decision logs; built automated reporting and workflow solutions that cut report generation time by 60%.",
+    exp_2_b3: "Increased client satisfaction by 20% through transparent stakeholder communication and structured discovery sessions.",
+    exp_2_b4: "Coordinated cross-functional teams across 3 departments; produced reusable project templates and acceptance-criteria checklists.",
+    exp_3_date: "Apr 2020 — Apr 2021",
+    exp_3_role: "Quality Assurance Specialist",
+    exp_3_b1: "Conducted manual &amp; automated testing for a B2B e-commerce platform — improved pre-deployment defect detection by 35%.",
+    exp_3_b2: "Contributed to Agile sprint planning and retrospectives; established test documentation and QA standards adopted by the team.",
+
+    // CASE FILES
+    cases_eyebrow: "Case Files",
+    cases_h_1: "Things I've",
+    cases_h_2: "Built.",
+    cases_intro: "Selected production systems across healthcare, real estate, travel-tech, and hospitality — each one solved concrete problems with concrete AI.",
+    case_challenge: "Challenge",
+    case_execution: "Execution",
+    case_visit: "Visit project",
+
+    case_1_status: "Live · Multi-Hospital",
+    case_1_subtitle: "AI-Native Hospital Information System (HIS)",
+    case_1_role: "Project Lead · AI Integration Specialist",
+    case_1_challenge: "Design and deliver an AI-native Hospital Information System (HIS) capable of running multiple hospitals — with clinical AI in every module, full HIPAA/GDPR compliance, and zero tolerance for clinical error.",
+    case_1_exec: ["EMR with AI triage, OPD, IPD &amp; emergency modules", "DICOM imaging pipeline with cloud AI analysis", "Real-time speech-to-text for doctor-patient conversations", "Automated discharge summary generation via LLM", "Pharmacy, billing, lab &amp; RBAC fully integrated", "Compliance reviews and multi-tenant architecture"],
+    case_1_callout_num: "5+ Hospitals",
+    case_1_callout_label: "Live in Production · HIPAA + GDPR",
+
+    case_2_status: "Live · DE/EN",
+    case_2_subtitle: "AI-Native CRM for German Real Estate",
+    case_2_role: "Product Owner · Architect · Lead Engineer",
+    case_2_challenge: "Transform a traditional German real estate brokerage into an AI-native sales system — replacing manual lead qualification, multilingual customer communication, and document processing with software, without disrupting daily operations.",
+    case_2_exec: ["AI-native CRM with intelligent lead qualification", "Multilingual LLM chatbots (DE/EN), 85% first-contact resolution", "Document AI for exposés, contracts, lease agreements", "Predictive models for property valuation &amp; market trends", "20+ n8n workflows between CRM, marketing &amp; operations", "WhatsApp integration for direct customer interaction"],
+    case_2_callout_num: "85% Resolution",
+    case_2_callout_label: "First-Contact Resolution · DE/EN",
+
+    case_3_status: "Live · KSA",
+    case_3_subtitle: "AI-Native Patient Support Ecosystem for Pharma",
+    case_3_role: "Technical Project Manager · AI Engineer",
+    case_3_challenge: "Deliver an AI-driven platform connecting pharmaceutical innovators with Patient Support Programs (PSPs) in Saudi Arabia — with real-time market intelligence, compliance-first architecture, and sub-10-second patient enrollment.",
+    case_3_exec: ["Sub-10s patient enrollment via barcode gateway", "Zero-Math Clinical Engine for auto-generated dosing timelines", "Live Sankey dashboards for competitor patient flow", "Predictive Kanban triage for high-risk patients", "Zero-PII pharma firewall &amp; SFDA/PDPL compliance", "Sovereign cloud hosting in KSA, full data residency"],
+    case_3_callout_num: "Sub-10s Enrollment",
+    case_3_callout_label: "SFDA + PDPL · Sovereign Cloud",
+
+    case_4_status: "Live in DE",
+    case_4_subtitle: "AI Voice Agent for German Medical Practices",
+    case_4_role: "Project Manager · Lead AI Engineer",
+    case_4_challenge: "Build a GDPR-compliant patient communication platform that automates German-language appointment scheduling, patient inquiries, and follow-up — over phone and chat, across multiple medical practices.",
+    case_4_exec: ["AI voice agent for appointment booking &amp; inquiries in German", "Telephony integration with real-time speech-to-text", "Automated appointment reminders via SMS/WhatsApp", "Patient intake and triage workflows", "GDPR-compliant data processing &amp; audit logs", "Prompt iteration with clinical feedback loop"],
+    case_4_callout_num: "24/7 Active",
+    case_4_callout_label: "German Voice AI · GDPR-Compliant",
+
+    case_5_status: "Live · Production",
+    case_5_subtitle: "RAG-Based Trip Planner for Route 66",
+    case_5_role: "Project Manager · AI Architect",
+    case_5_challenge: "Generate high-quality, personalized road trip itineraries on demand — pulling from massive datasets of restaurants, attractions, accommodations, weather, and reviews, with real-time data aggregation.",
+    case_5_exec: ["RAG system with semantic search across 10,000+ POIs", "LLM orchestration for itinerary generation", "Real-time data aggregation: maps, reviews, weather", "Vector DB for POI embeddings and similarity search", "AI coding workflow for frontend acceleration", "Acceptance criteria for AI-generated itinerary quality"],
+    case_5_callout_num: "10K+ POIs",
+    case_5_callout_label: "RAG · Vector DB · Semantic Search",
+
+    case_6_status: "Live · Multilingual",
+    case_6_subtitle: "AI POS System for Hospitality &amp; Retail",
+    case_6_role: "Product Owner · AI Engineer",
+    case_6_challenge: "Transform a traditional POS system into an AI-driven operations platform — with voice ordering, predictive inventory, dynamic pricing optimization, and a multilingual customer interface.",
+    case_6_exec: ["Voice ordering in multiple languages (DE/EN/HI)", "Predictive inventory based on sales patterns", "AI-driven menu and pricing optimization", "Multilingual customer interface &amp; self-service kiosk", "Payment integration (Stripe, PayPal, Sumup)", "Real-time analytics dashboard for operators"],
+    case_6_callout_num: "Voice + AI",
+    case_6_callout_label: "Multilingual · Production-Ready",
+
+    // PROTOCOL
+    protocol_eyebrow: "Delivery Protocol",
+    protocol_h_1: "How I",
+    protocol_h_2: "Ship.",
+    protocol_intro: "Every project moves through a structured operating sequence — from ambiguity to production.",
+    phase_1_title: "Discovery",
+    phase_1_desc: "Translate business goals into PRDs, technical specs, and acceptance criteria. Identify dependencies, risks, and integration points before a single line of code.",
+    phase_2_title: "Architecture",
+    phase_2_desc: "Design the AI integration layer, full-stack architecture, and delivery roadmap. Decide where Claude Code and AI agents accelerate, and where human engineering owns.",
+    phase_3_title: "Execution",
+    phase_3_desc: "Lead distributed teams through Agile sprints. Coordinate AI coding workflows alongside human devs. Enforce quality gates, review AI outputs, and unblock fast.",
+    phase_4_title: "Go-Live",
+    phase_4_desc: "Cutover, monitoring, knowledge transfer. Hand over clean documentation, decision logs, and runbooks. Stay on for stabilization until the system runs itself.",
+
+    // STACK
+    stack_eyebrow: "Tech Stack",
+    stack_h_1: "Tools in",
+    stack_h_2: "Operation.",
+    stack_intro: "Production-grade tooling across AI delivery, full-stack, cloud, and project ops.",
+    s1_title: "AI Delivery &amp; Agentic Workflows",
+    s2_title: "Full-Stack &amp; Architecture",
+    s3_title: "Automation Tools",
+    s4_title: "Cloud &amp; DevOps",
+    s5_title: "Delivery &amp; PM",
+    s6_title: "Voice &amp; Communication",
+
+    // BACKGROUND
+    bg_eyebrow: "Background",
+    bg_h_1: "Where I",
+    bg_h_2: "Trained.",
+    edu_1_title: "M.Eng — International Business &amp; Engineering",
+    edu_1_desc: "Cross-disciplinary engineering with international business context. Foundation for technical project management and leading cross-cultural, distributed teams.",
+    edu_2_title: "B.E. — Engineering",
+    edu_2_desc: "Engineering fundamentals — built on industry experience as a Big Data Developer at Tata Consultancy Services working on Hadoop infrastructure for HP.",
+    lang_label: "[ Languages ]",
+    lang_native: "Native",
+
+    // CONTACT
+    contact_eyebrow: "Secure Channel Open",
+    contact_h_1: "Let's Build",
+    contact_h_2: "Something",
+    contact_h_3: "Real.",
+    contact_sub: "Open to AI-native delivery roles, technical project management, and consulting engagements across Germany, DACH, and remote.",
+    contact_btn_1: "Send an Email",
+    contact_btn_2: "Connect on LinkedIn",
+
+    // FOOTER
+    foot_1: "Engineering Discipline",
+    foot_2: "AI-Native Delivery",
+    foot_3: "Production-Ready"
+  }
+};
+
+// Store original (German) content as default
+const defaultContent = {};
+document.querySelectorAll('[data-i18n]').forEach(el => {
+  defaultContent[el.getAttribute('data-i18n')] = el.innerHTML;
+});
+document.querySelectorAll('[data-i18n-list]').forEach(el => {
+  defaultContent[el.getAttribute('data-i18n-list')] = Array.from(el.children).map(c => c.innerHTML);
+});
+
+function setLang(lang) {
+  document.documentElement.setAttribute('lang', lang);
+  
+  // Update text content
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (lang === 'de') {
+      el.innerHTML = defaultContent[key];
+    } else if (i18n[lang] && i18n[lang][key] !== undefined) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  // Update list items
+  document.querySelectorAll('[data-i18n-list]').forEach(el => {
+    const key = el.getAttribute('data-i18n-list');
+    let items;
+    if (lang === 'de') items = defaultContent[key];
+    else if (i18n[lang] && i18n[lang][key]) items = i18n[lang][key];
+    else return;
+    el.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+  });
+
+  // Update button states
+  document.querySelectorAll('.lang-toggle button').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  
+  // Persist
+  try { localStorage.setItem('mandar_lang', lang); } catch(e) {}
+}
+
+// Wire up toggle
+document.querySelectorAll('.lang-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+});
+
+// Restore preference on load (or default DE)
+try {
+  const saved = localStorage.getItem('mandar_lang');
+  if (saved === 'en') setLang('en');
+} catch(e) {}
+
+// ============ NAV ACTIVE ============
+const sections = document.querySelectorAll('section, header.hero');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      if (!id) return;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(sec => observer.observe(sec));
+
+// ============ FADE-IN ============
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('section').forEach(s => {
+  s.classList.add('fade-in');
+  fadeObserver.observe(s);
+});
+</script>
+
+</body>
+</html>
